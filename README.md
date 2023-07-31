@@ -83,57 +83,57 @@ $charge = $commerce->resolveCharge($chargeID);
 $charge = $commerce->cancelCharge($chargeID);
 ```
 
-### Checkout
+### Payment Link
 
 ```php
 /*
-* Create a Checkout (Donation)
+* Create a Payment Link (Donation)
 */
 
-$checkout_created = $commerce->createCheckout([
-    "name" => "New Checkout",
+$paymentLinkCreated = $commerce->createPaymentLink([
+    "name" => "New Payment Link",
     "description" => "Mastering the Transition to the Information Age",
-    "checkout_type" => "donation",
+    "payment_link_type" => "donation",
     "requested_info" => ['name', 'email']
 ]);
 
 /*
-* Create a Checkout (Fixed Price)
+* Create a Payment Link (Fixed Price)
 */
 
-$checkout_created = $commerce->createCheckout([
+$paymentLinkCreated = $commerce->createPaymentLink([
     "name" => "The Sovereign Individual",
     "description" => "Mastering the Transition to the Information Age",
-    "checkout_type" => "fixed_price",
+    "payment_link_type" => "fixed_price",
     "local_amount" => 5000,
     "local_currency" => "NGN",
     "requested_info" => ['name','email','phone']
 ]);
 
-// Get Checkout
-$checkout = $commerce->getCheckout($checkoutID);
+// Get Payment Link
+$paymentLink = $commerce->getPaymentLink($paymentLinkID);
 
-// List Checkouts
-$checkouts = $commerce->listCheckouts(['limit' => 10,'page' => 1, 'sort' => 'asc']);
+// List Payment Links
+$paymentLinks = $commerce->listPaymentLinks(['limit' => 10,'page' => 1, 'sort' => 'asc']);
 
-// Delete Checkout
-$deleteCheckout = $commerce->deleteCheckout($checkoutID);
+// Delete Payment Link
+$deletedPaymentLink = $commerce->deletePaymentLink($paymentLinkID);
 
-// Update Checkout
-$checkout = $commerce->updateCheckout($checkoutID, [
+// Update Payment Link
+$paymentLink = $commerce->updatePaymentLink($paymentLinkID, [
     "name" => "The Sovereign Individual",
     "description" => "Mastering the Transition to the Information Age",
-    "checkout_type" => "fixed_price",
+    "payment_link_type" => "fixed_price",
     "local_amount" => 5000,
     "local_currency" => "NGN",
     "requested_info" => ['name','email','phone']
 ]);
 
-// Toggle Checkout
-$checkout = $commerce->toggleCheckout($checkoutID);
+// Toggle Payment Link
+$paymentLink = $commerce->togglePaymentLink($paymentLinkID);
 
-//Create Charge for Checkout 
-$checkoutcharge = $commerce->createCheckoutCharge($checkoutID, [
+//Create Charge for Payment Link 
+$paymentLinkCharge = $commerce->createPaymentLinkCharge($paymentLinkID, [
     "local_amount" => 50000,
     "local_currency" => "NGN"
     "meta" => [
@@ -169,7 +169,7 @@ $invoice = $commerce->getInvoice($invoiceID);
 $invoice = $commerce->voidInvoice(invoiceID)
 
 //Create Charge for Invoice 
-$checkoutcharge = $commerce->createCheckoutCharge($invoiceID, [
+$invoiceCharge = $commerce->createInvoiceCharge($invoiceID, [
     "meta" => [
         "email" => "sarah.shaw@example.co", 
         "name" => "Sarah Shaw"

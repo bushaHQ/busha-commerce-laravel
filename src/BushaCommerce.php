@@ -150,22 +150,22 @@ class BushaCommerce
      * @return object
      * @throws ServerErrorException
      */
-    public function createCheckout(array $params = []): object
+    public function createPaymentLink(array $params = []): object
     {
         $params['local_amount'] = strval($params['local_amount'] ?? 0);
-        return $this->doRequest('post', 'checkouts', $params);
+        return $this->doRequest('post', 'payment_links', $params);
     }
 
     /**
-     * @param string $checkoutId
+     * @param string $paymentLinkID
      * @param array $params
      * @return object
      * @throws ServerErrorException
      */
-    public function updateCheckout(string $checkoutId, array $params = []): object
+    public function updatePaymentLink(string $paymentLinkID, array $params = []): object
     {
         $params['local_amount'] = strval($params['local_amount'] ?? 0);
-        return $this->doRequest('put', "checkouts/{$checkoutId}", $params);
+        return $this->doRequest('put', "payment_links/{$paymentLinkID}", $params);
     }
 
     /**
@@ -173,51 +173,51 @@ class BushaCommerce
      * @return object
      * @throws ServerErrorException
      */
-    public function listCheckouts(array $query = ['page' => 1, 'per_page' => 25]): object
+    public function listPaymentLinks(array $query = ['page' => 1, 'per_page' => 25]): object
     {
-        return $this->doRequest('get', 'checkouts', $query);
+        return $this->doRequest('get', 'payment_links', $query);
     }
 
     /**
-     * @param string $checkoutId
+     * @param string $paymentLinkID
      * @return object
      * @throws ServerErrorException
      */
-    public function getCheckout(string $checkoutId): object
+    public function getPaymentLink(string $paymentLinkID): object
     {
-        return $this->doRequest('get', "checkouts/{$checkoutId}");
+        return $this->doRequest('get', "payment_links/{$paymentLinkID}");
     }
 
     /**
-     * @param string $checkoutId
+     * @param string $paymentLinkID
      * @return object
      * @throws ServerErrorException
      */
-    public function deleteCheckout(string $checkoutId): object
+    public function deletePaymentLink(string $paymentLinkID): object
     {
-        return $this->doRequest('delete', "checkouts/{$checkoutId}");
+        return $this->doRequest('delete', "payment_links/{$paymentLinkID}");
     }
 
     /**
-     * @param string $checkoutId
+     * @param string $paymentLinkID
      * @return object
      * @throws ServerErrorException
      */
-    public function toggleCheckout(string $checkoutId): object
+    public function togglePaymentLink(string $paymentLinkID): object
     {
-        return $this->doRequest('patch', "checkouts/{$checkoutId}/active");
+        return $this->doRequest('patch', "payment_links/{$paymentLinkID}/active");
     }
 
     /**
-     * @param string $checkoutId
+     * @param string $paymentLinkID
      * @param array $params
      * @return object
      * @throws ServerErrorException
      */
-    public function createCheckoutCharge(string $checkoutId, array $params = []): object
+    public function createPaymentLinkCharge(string $paymentLinkID, array $params = []): object
     {
         $params['local_amount'] = strval($params['local_amount'] ?? 0);
-        return $this->doRequest('post', "checkouts/{$checkoutId}/charge", $params);
+        return $this->doRequest('post', "payment_links/{$paymentLinkID}/charge", $params);
     }
 
     /**
